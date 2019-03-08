@@ -1,8 +1,8 @@
 
-public interface Queue {
+public interface Queue<T> {
 	
-	public Object dequeue();
-	public void enqueue(Object item);
+	public T dequeue();
+	public void enqueue(T item);
 	public boolean empty();
 
 }

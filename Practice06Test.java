@@ -1,16 +1,19 @@
+import java.util.regex.*;
+
 
 public class Practice06Test {
 	
-	protected Queue queue;
-	protected Stack stack;
+	protected Queue<String> queue;
+	protected Stack<String> stack;
 	protected final int size_of_test = 500;
-	protected final String[] expressionList = {"level", "Anna", "A nut for a jar of tuna!"};
+	protected final String randomString = "Hello world!";
+	protected final String[] expressionList = {"level", "anna"};
 	protected final String[] wrongList = {"first", "Matter fact", "Landed on his hip and busted his lip"};
 	
 	
 	public Practice06Test() {
-		queue = new ArrayQueue();
-		stack = new ArrayStack();
+		queue = new ArrayQueue<String>();
+		stack = new ArrayStack<String>();
 	}
 	
 	
@@ -27,8 +30,11 @@ public class Practice06Test {
 	public boolean isPalindrome(String item) {
 		clearData();
 		for (int i = 0; i < item.length(); i++) {
-			stack.push(item.substring(i, i+1));
-			queue.enqueue(item.substring(i, i+1));
+			String substring = item.substring(i, i+1).toLowerCase();
+			if (substring.matches("[a-z]+")) {
+				stack.push(item.substring(i, i+1));
+				queue.enqueue(item.substring(i, i+1));
+			}
 		}
 
 		while (! stack.empty() && ! queue.empty()) {
@@ -79,8 +85,8 @@ public class Practice06Test {
 			
 			// Additional sanity test: place a large number of items in the stack / queue to see if it resizes.
 			for (int i = 0; i < size_of_test; i++) {
-				queue.enqueue(Integer.MAX_VALUE);
-				stack.push(Integer.MIN_VALUE);
+				queue.enqueue(randomString);
+				stack.push(randomString);
 			}
 			boolean emptiedEarly = false;
 			for (int i = 0; i < size_of_test; i++) {
@@ -91,8 +97,8 @@ public class Practice06Test {
 				stack.pop();
 			}
 			if (queue.empty() && stack.empty() && ! emptiedEarly) {
-				System.out.println("[+10%] Stack and Queue appear to resize correctly.");
-				grade += 10;
+				System.out.println("[+20%] Stack and Queue appear to resize correctly.");
+				grade += 20;
 			} else {
 				System.out.println("[ XX ] Stack or Queue do not resize correctly.");
 			}
