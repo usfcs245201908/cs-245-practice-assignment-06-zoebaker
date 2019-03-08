@@ -1,3 +1,3 @@
-# CS 245 (Fall 2018) Practice Assignment 06
+# CS 245 (Spring 2019) Practice Assignment 06
 
 See assignment details on Canvas.
