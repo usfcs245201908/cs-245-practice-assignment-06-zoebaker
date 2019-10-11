@@ -1,0 +1,50 @@
+import java.util.Arrays;
+
+public class ArrayStack <T> implements Stack {
+
+    protected T a[];
+    protected int top;
+
+    public ArrayStack(){
+        a = (T[]) new Object[10];
+        top = -1;
+    }
+
+    public boolean empty() {
+        // if stack is empty return true
+        return top == -1;
+    }
+
+    public T pop()  {
+        //check to see if stack is empty
+        if (empty()){
+            return null; }
+        else//if not empty, return the item of the top of the stack and decrement top
+            return a[top--];
+    }
+
+
+
+    public void push(Object item) {
+        if (a.length -1 ==top) {
+            arrayGrow();
+        }
+        a[++top] = (T)item;
+
+    }
+
+    public T peek()  {
+        if (empty()){}
+
+        return a[top];
+    }
+
+    public void arrayGrow(){
+
+        a= Arrays.copyOf(a,a.length+10 );
+       /*String [] a = new Object[]String [a.length*2];
+        System.arraycopy(a,0,newarray, 0, length );
+        a= newarray;
+        */
+    }
+}
