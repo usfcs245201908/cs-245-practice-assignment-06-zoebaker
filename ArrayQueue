@@ -1,0 +1,56 @@
+import java.util.Arrays;
+
+public class ArrayQueue <T> implements Queue{
+    protected T[] a;
+    protected int front = 0;
+    protected int back;
+
+    public ArrayQueue()  {
+        a = (T[]) new Object[10];
+        front =0;
+        back=0;
+    }
+
+    public boolean empty() {
+        return (front== back);
+    }
+    public T dequeue()  {
+        if (!empty()) {
+            T item = a[front];
+            front = (front + 1) % a.length;
+            return item;
+
+        } else
+            return null;
+
+    }
+
+    public void enqueue(Object item) {
+        if (back == a.length){
+            grow_array();
+        }
+        a[back++] = (T)item;
+        // a[back++] = item;
+        // back = back % a.length;
+
+    }
+
+    private void grow_array() {
+        a= Arrays.copyOf(a,a.length+1000 );
+        //  int length = Array.getLength(a);
+        //int newLength = length*2;
+       /* String [] newarray;
+        newarray = new String [a.length*2];
+        System.arraycopy(a,0,newarray, 0, a.length );
+        a= newarray;
+
+        */
+    }
+
+
+
+
+
+
+
+}
